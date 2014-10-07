@@ -1,0 +1,37 @@
+@font-face {
+    font-family:"Birds of Paradise";
+    src: url(../fuentes/Birds%20of%20Paradise.ttf);
+}
+
+body{
+    margin: 0;
+    background: url('../images/plomo.png');
+    background-size: cover;
+    text-align: center;
+}
+header{
+    position: relative;
+    margin: 0;
+
+    background: url("../images/overlay.png");
+    height: 50%;
+}
+
+#contenido{
+    height: 30%;
+    background: url("../images/overlay.png");
+}
+
+footer{
+    height: 20%;
+    background: url("../images/overlay.png");
+}
+
+.container{
+    margin: 0 10px 0 10px;
+}
+
+h2{
+    color: #ffffff;
+    font-family: "birds of paradise";
+}
