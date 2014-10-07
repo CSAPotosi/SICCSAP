@@ -1,5 +1,5 @@
 <?php
-
+Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
 
@@ -8,7 +8,8 @@
 return array(
     'timeZone'=>'America/La_Paz',
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'SICCSAP',
+	'name'=>'SICCSAPSRL',
+    'theme'=>'bootstrap',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -27,7 +28,10 @@ return array(
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'123456',
-		),
+            'generatorPaths'=>array(
+                'bootstrap.gii',
+            ),
+   		),
 
         'cruge'=>array(
             'tableprefix'=>'cruge_',
@@ -94,6 +98,9 @@ return array(
 
 	// application components
 	'components'=>array(
+        'bootstrap'=>array(
+            'class'=>'bootstrap.components.Bootstrap',
+        ),
         'user'=>array(
             'allowAutoLogin'=>true,
             'class' => 'application.modules.cruge.components.CrugeWebUser',
