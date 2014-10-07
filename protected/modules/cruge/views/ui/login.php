@@ -1,3 +1,4 @@
+
 <?php if(Yii::app()->user->hasFlash('loginflash')): ?>
 <div class="flash-error">
 	<?php echo Yii::app()->user->getFlash('loginflash'); ?>
