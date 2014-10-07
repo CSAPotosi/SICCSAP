@@ -1,4 +1,5 @@
 //triggers del sistema
+//aqui entrar todos los archivos del sistema de base de datos
 create or replace function pseudo_fk_historial_costos() returns trigger as $$
 begin
     if not exists(select * from servicio where id_servicio = new.id_servicio) then
