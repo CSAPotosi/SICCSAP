@@ -3,7 +3,7 @@
 /* @var $model Departamento */
 /* @var $form CActiveForm */
 ?>
-
+<!-- lalalalalalalala-->
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
