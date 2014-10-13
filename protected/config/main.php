@@ -8,7 +8,7 @@ Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
 return array(
     'timeZone'=>'America/La_Paz',
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'SICCSAPSRL',
+	'name'=>'SICCSAP',
     'theme'=>'bootstrap',
 
 	// preloading 'log' component

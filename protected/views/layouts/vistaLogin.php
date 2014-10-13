@@ -3,7 +3,7 @@
         <script src="<?php echo Yii::app()->request->baseUrl;?>/js/jquery.min.js"></script>
         <script src="<?php echo Yii::app()->request->baseUrl;?>/js/skel.min.js"></script>
         <script src="<?php echo Yii::app()->request->baseUrl;?>/js/init.js"></script>
-
+        <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl;?>/css/font-awesome/css/font-awesome.min.css">
 
 
     </head>
