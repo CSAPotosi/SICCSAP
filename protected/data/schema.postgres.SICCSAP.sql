@@ -1,50 +1,7 @@
 /* comando para insertar desde archivo \i ubicacion del archivo ej c:wamp/www/schema.postgres.SICCSAP.sql*/
 drop database if exists siccsap;
 create database siccsap;
-/*
-tabla paciente*/
-/*create table empresa(
-nit varchar(15).
-nombre varchar(50),
-telefono varchar(30),
-celular varchar(30)
-)
 
-create table departamento(
-id_departamento SERIAL PRIMARY KEY,
-nombre varchar(50),
-ubicacion varchar(100),
-piso varchar(50)
-)
-create table empleado(
-id_empleado SERIAL PRIMARY KEY,
-fecha_de_contratacion date,
-cargo varchar(50)
-id_departamento int foreign key references departamento(id_departamento)
-)inherits (persona)
-create table paciente(
-id_paciente SERIAL PRIMARY KEY,
-ocupacion varchar(50),
-peso int,
-altura float,
-tipo_sangre varchar(10),
-sexo varchar(20)
-)inherits (persona)
-create table responsable(
-parentesco varchar(50)
-id_paciente int foreign key references paciente(id_paciente)
-)inherits (persona)
-create table historial_clinico(
-id_historial SERIAL primary key,
-fecha_de_apertura date,
-fecha_actualizacion date,
-estado varchar(15)
-medicamentos_actual varchar(100),
-medicamentos_prohibidos varchar(100),
-informacion_adicional varchar (300)
-id_paciente int foreign key references paciente(id_paciente)
-)
-*/
 /* CRUGE  */
 CREATE TABLE cruge_system(
   idsystem serial,
@@ -257,6 +214,7 @@ create table empleado(
   foreign key (id_horario) references horario(id_horario),
   foreign key (id_departamento) references departamento(id_departamento)
 )inherits (persona);
+
 create table registro(
   id_registro SERIAL not null PRIMARY KEY,
   id_empleado int,
@@ -300,3 +258,25 @@ create table sala(
   id_servicio int,
   foreign key (id_servicio) references tipo_sala(id_servicio)
 );
+
+create table empresa(
+  id_empresa serial not null primary key,
+  nit_empresa int,
+  nombre_empresa varchar(128),
+  ubicacion_empresa varchar(128)
+);
+
+
+create table paciente(
+  id_paciente serial not null primary key,
+  ocupacion_paciente varchar(50),
+  grupo_sanguineo_paciente varchar(5),
+  nombre_responsable varchar(128),
+  telefono_responsable varchar(30),
+  relacion_responsable_paciente varchar(20),
+  tipo_paciente varchar(20),
+  estado_paciente varchar(2),
+  fecha_muerte timestamp,
+  id_empresa int,
+  foreign key (id_empresa) references empresa(id_empresa)
+)inherits (persona);
