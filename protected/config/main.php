@@ -74,7 +74,6 @@ return array(
             'afterLoginUrl'=>null,
             'afterLogoutUrl'=>null,
             'afterSessionExpiredUrl'=>null,
-
             // manejo del layout con cruge.
             //
             'loginLayout'=>'//layouts/vistaLogin',

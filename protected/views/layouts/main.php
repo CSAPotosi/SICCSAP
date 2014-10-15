@@ -59,19 +59,43 @@
         <div class="row row-offcanvas row-offcanvas-left">
 
             <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-                <div class="list-group">
-                    <?php echo CHtml::link('Tarea',array('sala/index'),array('class'=>'list-group-item')); ?>
-                    <?php echo CHtml::link('Medico',array('medico/index'),array('class'=>'list-group-item')); ?>
-                    <a href="#" class="list-group-item">Link</a>
-                    <a href="#" class="list-group-item">Link</a>
-                    <a href="#" class="list-group-item">Link</a>
-                    <a href="#" class="list-group-item">Link</a>
-                    <a href="#" class="list-group-item">Link</a>
-                    <a href="#" class="list-group-item">Link</a>
-                    <a href="#" class="list-group-item">Link</a>
-                    <a href="#" class="list-group-item">Link</a>
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-primary">
+
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#accordionOne">
+                                    Paciente
+                                </a>
+                            </h4>
+                        </div>
+
+                        <div id="accordionOne" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <a href="">Nuevo</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-success">
+
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#accordionTwo">
+                                    Medico
+                                </a>
+                            </h4>
+                        </div>
+
+                        <div id="accordionTwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <a href="">cita</a>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-            </div><!--/span-->
+                </div><!--/span-->
 
             <!--/ contenido -->
             <div class="col-xs-12 col-sm-9 ">

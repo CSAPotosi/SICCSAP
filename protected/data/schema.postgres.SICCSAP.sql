@@ -228,8 +228,6 @@ create table registro(
   foreign key (id_horario) references horario(id_horario),
   foreign key (id_empleado) references departamento(id_departamento)
 );
-
-
 create table servicio(
   id_servicio int unique,
   fecha_creacion_servicio date,
