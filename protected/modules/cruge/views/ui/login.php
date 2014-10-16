@@ -11,21 +11,32 @@
 	'clientOptions'=>array(
 		'validateOnSubmit'=>true,
 	),
+    'htmlOptions'=>array(
+        'class'=>'form-inline',
+    ),
 )); ?>
 
 
-		<?php echo $form->textField($model,'username',array('placeholder'=>'Nombre de Usuario')); ?>
-		<?php echo $form->error($model,'username'); ?>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                <?php echo $form->textField($model,'username',array('placeholder'=>'Nombre de Usuario','class'=>'form-control')); ?>
+                <?php echo $form->error($model,'username'); ?>
+            </div>
+        </div>
+        <br/>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-key"></i></div>
+                <?php echo $form->passwordField($model,'password',array('placeholder'=>'Password','class'=>'form-control')); ?>
+                <?php echo $form->error($model,'password'); ?>
+            </div>
+        </div>
+        <br/>
 
 
+        <input type="submit" value="Iniciar Sesion" class="btn btn-default btn-lg"/>
 
-		<?php echo $form->passwordField($model,'password',array('placeholder'=>'Password')); ?>
-		<?php echo $form->error($model,'password'); ?>
-
-
-	<div class="row buttons">
-        <input type="submit" value="Iniciar Sesion" id="miBoton"/>
-	</div>
 
 	<?php
 		//	si el componente CrugeConnector existe lo usa:

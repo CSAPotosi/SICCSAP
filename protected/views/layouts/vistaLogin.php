@@ -1,5 +1,7 @@
 <html>
     <head>
+        <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl;?>/css/bootstrap.min.css">
+
         <script src="<?php echo Yii::app()->request->baseUrl;?>/js/jquery.min.js"></script>
         <script src="<?php echo Yii::app()->request->baseUrl;?>/js/skel.min.js"></script>
         <script src="<?php echo Yii::app()->request->baseUrl;?>/js/init.js"></script>
@@ -15,11 +17,11 @@
                 <h1>Clinica Santa Ana</h1>
                 <p>Sistema de Informacion Clinica y Contable Santa Ana Potosi</p>
             </header>
-            <?php echo $content?>
+
             <footer>
-                <p style="text-align:center">
-                </p>
-                <a href="Pagina2/index.html" class="button scrolly" id="boton">Iniciar Sesion</a>
+
+                <?php echo $content?>
+
             </footer>
         </section>
 
