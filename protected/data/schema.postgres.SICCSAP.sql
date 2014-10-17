@@ -214,7 +214,6 @@ create table empleado(
   foreign key (id_horario) references horario(id_horario),
   foreign key (id_departamento) references departamento(id_departamento)
 )inherits (persona);
-
 create table registro(
   id_registro SERIAL not null PRIMARY KEY,
   id_empleado int,
@@ -228,6 +227,8 @@ create table registro(
   foreign key (id_horario) references horario(id_horario),
   foreign key (id_empleado) references departamento(id_departamento)
 );
+
+
 create table servicio(
   id_servicio int unique,
   fecha_creacion_servicio date,
@@ -278,3 +279,16 @@ create table paciente(
   id_empresa int,
   foreign key (id_empresa) references empresa(id_empresa)
 )inherits (persona);
+
+
+
+CREATE TABLE cuenta
+(
+  id_cuenta serial NOT NULL,
+  codigo character varying(15),
+  descripcion character varying(100),
+  estado character(1),
+  auxiliar character varying,
+  cuenta_padre character varying(15),
+  CONSTRAINT cuenta_pkey PRIMARY KEY (id_cuenta )
+)

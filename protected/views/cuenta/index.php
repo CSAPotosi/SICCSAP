@@ -15,6 +15,18 @@ $this->menu=array(
 <h1>Cuentas</h1>
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'dataProvider'=>$dataProvider,
+    'dataProvider'=>$dataProvider,
+    'rowCssClassExpression'=>'$data->getcssclass()',
+    'columns'=>array(
+        'codigo:text:Código',
+        'descripcion:text:Descripción',
+        array('class'=>'CButtonColumn','header'=>'Operaciones'),
+        array(
+            'class'=>'CLinkColumn',
+            'label'=>'link',
+            'urlExpression'=>'"?r=cuenta/crear&id=".$data->codigo',
+            'header'=>'Author'
+        ),
+    )
 	//'itemView'=>'_view',
 ));

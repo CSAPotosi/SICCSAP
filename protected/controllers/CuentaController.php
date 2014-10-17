@@ -36,7 +36,7 @@ class CuentaController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete','crear'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -123,10 +123,13 @@ class CuentaController extends Controller
 	 */
 	public function actionIndex()
 	{
-        $dataProvider=new CActiveDataProvider('Cuenta');
+        $criteria=new CDbCriteria;
+        $criteria->addCondition("estado='A'");
+        $sort=new CSort();
+        $sort->defaultOrder='codigo ASC';
+        $dataProvider=new CActiveDataProvider('Cuenta',array('criteria'=>$criteria,'sort'=>$sort,'pagination'=>array('pageSize'=>50)));
         $this->render('index',array(
             'dataProvider'=>$dataProvider,
-            'columns' => array('codigo','descripcion'),
         ));
 	}
 
@@ -172,4 +175,61 @@ class CuentaController extends Controller
 			Yii::app()->end();
 		}
 	}
+    public function actionCrear($id)
+    {
+        $criteria=new CDbCriteria;
+        $codigo = addcslashes($id, '%_');
+        $criteria->select='max(codigo) AS codigo';
+        $criteria->condition="codigo like :codigo";
+        if(strlen($id)<3)
+            $criteria->params=array(':codigo'=>"$codigo"."_");
+        else
+            $criteria->params=array(':codigo'=>"$codigo"."__");
+        $model=Cuenta::model()->find($criteria);
+        $var=$model['codigo'];
+        if($var==null)
+        {
+            if(strlen($id)<3)
+                $var=$id."1";
+            else
+                $var=$id."01";
+        }
+        else
+            $var=(string)$var+1;
+
+        /////////////////////
+//        $this->render('crear',array('codigo'=>$var,));
+
+        /*
+        $cuenta = new Cuenta;
+        $model = new crearCuentaForm;
+        $model->codigo=$var;
+        $form = new CForm('application.views.cuenta.crearcuenta',$model);
+
+        if ($form->submitted('guardar')&& $form->validate()) {
+            $cuenta->codigo = $model->codigo;
+            $cuenta->descripcion = $model->descripcion;
+            $cuenta->estado = 'A';
+            $cuenta->cuenta_padre = $id;
+            $cuenta->save();
+            $this->redirect(array('index'));
+        }
+        else
+            $this->render('crear',array(
+            'form'=>$form,
+        ));
+    */
+        if(isset($_POST['Cuenta']))
+        {
+            $model->attributes=$_POST['Cuenta'];
+            $model->estado='A';
+            $model->cuenta_padre = $id;
+            if($model->save())
+                $this->redirect(array('view','id'=>$model->id_cuenta));
+        }
+        $model->codigo=$var;
+        $this->render('crear',array(
+            'model'=>$model,
+        ));
+    }
 }

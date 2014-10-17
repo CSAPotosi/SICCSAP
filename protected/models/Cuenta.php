@@ -82,8 +82,6 @@ class Cuenta extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-        $sort=new CSort();
-        $sort->defaultOrder='codigo ASC';
 		$criteria->compare('id_cuenta',$this->id_cuenta);
 		$criteria->compare('codigo',$this->codigo,true);
 		$criteria->compare('descripcion',$this->descripcion,true);
@@ -93,7 +91,6 @@ class Cuenta extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
-            'sort'=>$sort,
 		));
 	}
 
@@ -107,4 +104,16 @@ class Cuenta extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+    public function getcssclass(){
+        switch(strlen($this->codigo))
+        {
+            case 1:return "primario";break;
+            case 2:return "secundario";break;
+            case 3:return "terciario";break;
+            case 4:return "cuarto";break;
+            case 5:return "quinto";break;
+            default: return null;
+        }
+        return null;
+    }
 }
