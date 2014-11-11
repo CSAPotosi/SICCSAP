@@ -150,6 +150,7 @@ CREATE TABLE cruge_authitemchild (
 
 /*tablas de base de datos*/
 
+/* Oso */
 
 CREATE TABLE especialidad(
   id_especialidad SERIAL primary key not null,
@@ -181,7 +182,7 @@ create table medico(
   id_medico serial not null primary key ,
   matricula varchar(20),
   colegiatura varchar(50),
-  estado varchar(1) check (estado in ('A','I','O')),
+  estado varchar(15) ,
   motivo_cambio_estado varchar(128)
 )inherits (persona);
 
@@ -200,8 +201,7 @@ create table departamento(
 create table horario(
   id_horario SERIAL not null PRIMARY KEY,
   nombre varchar(50),
-  hora_ingreso time,
-  hora_salida time
+  descripcion varchar(100)
 );
 create table empleado(
   id_empleado SERIAL not null PRIMARY KEY,
@@ -209,19 +209,20 @@ create table empleado(
   fecha_de_contratacion date,
   cargo varchar(50),
   id_departamento int,
-  estado varchar(1) check (estado in ('A','I','O')),
+  estado varchar(15) ,
   motivo_cambio_estado varchar(128),
   foreign key (id_horario) references horario(id_horario),
   foreign key (id_departamento) references departamento(id_departamento)
 )inherits (persona);
+
 create table registro(
   id_registro SERIAL not null PRIMARY KEY,
   id_empleado int,
   id_horario int,
   id_departamento int,
-  fecha_de_registro date,
-  hora_ingreso time,
-  hora_salida time,
+  fecha_de_registro timestamp,
+  hora_ingreso timestamp,
+  hora_salida timestamp,
   excepcion varchar(20),
   foreign key (id_empleado) references empleado(id_empleado),
   foreign key (id_horario) references horario(id_horario),
@@ -229,6 +230,32 @@ create table registro(
 );
 
 
+create table empresa(
+  id_empresa serial not null primary key,
+  nit_empresa int,
+  nombre_empresa varchar(128),
+  ubicacion_empresa varchar(128),
+  telefono_empresa varchar(15)
+);
+
+
+create table paciente(
+  id_paciente serial not null primary key,
+  ocupacion_paciente varchar(50),
+  grupo_sanguineo_paciente varchar(5),
+  nombre_responsable varchar(128),
+  telefono_responsable varchar(30),
+  relacion_responsable_paciente varchar(20),
+  estado_paciente varchar(15),
+  fecha_muerte timestamp,
+  id_empresa int,
+  foreign key (id_empresa) references empresa(id_empresa)
+)inherits (persona);
+
+
+/*Fin oso*/
+
+/*pika */
 create table servicio(
   id_servicio int unique,
   fecha_creacion_servicio date,
@@ -258,30 +285,10 @@ create table sala(
   foreign key (id_servicio) references tipo_sala(id_servicio)
 );
 
-create table empresa(
-  id_empresa serial not null primary key,
-  nit_empresa int,
-  nombre_empresa varchar(128),
-  ubicacion_empresa varchar(128)
-);
+/*Fin pika*/
 
 
-create table paciente(
-  id_paciente serial not null primary key,
-  ocupacion_paciente varchar(50),
-  grupo_sanguineo_paciente varchar(5),
-  nombre_responsable varchar(128),
-  telefono_responsable varchar(30),
-  relacion_responsable_paciente varchar(20),
-  tipo_paciente varchar(20),
-  estado_paciente varchar(2),
-  fecha_muerte timestamp,
-  id_empresa int,
-  foreign key (id_empresa) references empresa(id_empresa)
-)inherits (persona);
-
-
-
+/*Benito*/
 CREATE TABLE cuenta
 (
   id_cuenta serial NOT NULL,
@@ -291,4 +298,6 @@ CREATE TABLE cuenta
   auxiliar character varying,
   cuenta_padre character varying(15),
   CONSTRAINT cuenta_pkey PRIMARY KEY (id_cuenta )
-)
+);
+
+/*fin Benito*/
