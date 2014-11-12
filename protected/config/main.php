@@ -23,7 +23,10 @@ return array(
 	),
 
 	'modules'=>array(
-		// uncomment the following to enable the Gii tool
+
+    'importcsv'=>array(
+    'path'=>'C:/wamp/www/SICCSAPSRL/archivos/', // path to folder for saving csv file and file with import params
+    ),
 
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',

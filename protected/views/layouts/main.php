@@ -36,9 +36,9 @@
             <div class="collapse navbar-collapse">
                 <?php $this->widget('zii.widgets.CMenu',array(
                     'items'=>array(
-                        array('label'=>'Home', 'url'=>array('/site/index')),
-                        array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-                        array('label'=>'Contact', 'url'=>array('/site/contact')),
+                        array('label'=>'Inicio', 'url'=>array('/site/index')),
+                        array('label'=>'Tareas', 'url'=>array('/site/page', 'view'=>'about')),
+                        array('label'=>'Ayuda', 'url'=>array('/site/contact')),
                         array('label'=>'Administrar Usuarios'
                         , 'url'=>Yii::app()->user->ui->userManagementAdminUrl
                         , 'visible'=>!Yii::app()->user->isGuest),
@@ -65,31 +65,80 @@
                         <div class="panel-heading">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#accordionOne">
-                                    Paciente
+                                    Servicios Medicos
                                 </a>
                             </h4>
                         </div>
 
                         <div id="accordionOne" class="panel-collapse collapse in">
                             <div class="panel-body">
-                                <a href="">Nuevo</a>
+                                <a href="http://localhost/SICCSAPSRL/index.php?r=paciente">Consulta Externa</a>
+                            </div>
+                            <div class="panel-body">
+                                <a href="">Inyectables</a>
+                            </div>
+                            <div class="panel-body">
+                                <a href="">Curaciones</a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="panel panel-success">
+                    <div class="panel panel-primary">
 
                         <div class="panel-heading">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#accordionTwo">
-                                    Medico
+                                    Consulta especialista
                                 </a>
                             </h4>
                         </div>
 
                         <div id="accordionTwo" class="panel-collapse collapse">
                             <div class="panel-body">
-                                <a href="">cita</a>
+                                <a href="">Programar Cita</a>
+                            </div>
+                            <div class="panel-body">
+                                <a href="">Buscar Medico</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="panel panel-primary">
+
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#accordionThree">
+                                    Empleados
+                                </a>
+                            </h4>
+                        </div>
+
+                        <div id="accordionThree" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <a href="http://localhost/SICCSAPSRL/index.php?r=empleado">Nuevo empleado</a>
+                            </div>
+                            <div class="panel-body">
+                                <a href="">Buscar Empleado</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="panel panel-primary">
+
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#accordionfour">
+                                    Asistencia
+                                </a>
+                            </h4>
+                        </div>
+
+                        <div id="accordionfour" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <a href="http://localhost/SICCSAPSRL/index.php?r=importcsv">Importar asistencia</a>
+                            </div>
+                            <div class="panel-body">
+                                <a href="http://localhost/SICCSAPSRL/index.php?r=registro">Registrar asistencia</a>
                             </div>
                         </div>
 
