@@ -322,7 +322,9 @@ create table historial_costo(
 );
 create table solicitud_orden(
   id_orden serial primary key,
-  nombre varchar(50)
+  nombre varchar(50),
+  id_historial int,
+  foreign key (id_historial) references historial_medico(id_historial)
 )inherits (servicio);
 create table tipo_sala(
   id_servicio SERIAL not null primary key,
