@@ -1,6 +1,7 @@
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'cie10-form',
 	'enableAjaxValidation'=>false,
+    'htmlOptions'=>array(),
 )); ?>
 
 	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
