@@ -253,7 +253,6 @@ create table historial_medico(
   fecha_actualizacion timestamp,
   foreign key (id_paciente) references paciente (id_paciente)
 );
-
 create table historial_consulta(
   id_historial_consulta serial primary key,
   fecha_de_consulta timestamp,
@@ -274,6 +273,22 @@ create table diagnostico_consulta(
   id_historial_consulta int,
   foreign key (id_historial_consulta) references historial_consulta(id_historial_consulta)
 );
+create table receta(
+  id_receta serial primary key,
+  nombre varchar(100),
+  cantidad int,
+  tratamiento varchar(200),
+  id_diagnostico int,
+  foreign key (id_diagnostico) references receta(id_diagnostico)
+);
+create table reconsulta(
+  id_reconsulta serial primary key,
+  fecha_reconsulta timestamp,
+  evolucion varchar(200),
+  observaciones varchar(200),
+  id_historia_consulta int,
+  foreign key (id_historia_consulta) references historial_consulta(id_historial_consulta)
+);
 create table historial_internacion(
   id_historial_internacion serial primary key,
   fecha_admicion timestamp,
@@ -283,7 +298,16 @@ create table historial_internacion(
   id_historial int,
   foreign key (id_historial) references historial_medico(id_historial_medico)
 );
-
+create table programacion_cita(
+  id_programacion_cita serial primary key,
+  fecha_de_registro timestamp,
+  fecha date,
+  hora time,
+  id_paciente int,
+  id_medico int,
+  foreign key (id_medico) references medico(id_medico),
+  foreign key (id_paciente) references paciente(id_paciente)
+);
 create table servicio(
   id_servicio int unique,
   fecha_creacion_servicio date,
@@ -296,16 +320,10 @@ create table historial_costo(
   monto float not null,
   id_servicio int
 );
-create table programacion_cita(
-  id_programacion_cita serial primary key,
-  fecha_de_registro timestamp,
-  fecha date,
-  hora time,
-  id_paciente int,
-  id_medico int,
-  foreign key (id_medico) references medico(id_medico),
-  foreign key (id_paciente) references paciente(id_paciente)
-);
+create table solicitud_orden(
+  id_orden serial primary key,
+  nombre varchar(50)
+)inherits (servicio);
 create table tipo_sala(
   id_servicio SERIAL not null primary key,
   nombre_tipo_sala varchar(50) not null,
