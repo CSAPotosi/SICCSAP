@@ -256,8 +256,8 @@ create table historial_medico(
 create table historial_consulta(
   id_historial_consulta serial primary key,
   fecha_de_consulta timestamp,
-  id_historial_medico int,
-  foreign key (id_historial_medico) references historial_medico(id_historial_medico)
+  id_historial int,
+  foreign key (id_historial) references historial_medico(id_historial)
 );
 create table diagnostico_consulta(
   id_diagnostico serial primary key,
@@ -279,15 +279,15 @@ create table receta(
   cantidad int,
   tratamiento varchar(200),
   id_diagnostico int,
-  foreign key (id_diagnostico) references receta(id_diagnostico)
+  foreign key (id_diagnostico) references diagnostico_consulta(id_diagnostico)
 );
 create table reconsulta(
   id_reconsulta serial primary key,
   fecha_reconsulta timestamp,
   evolucion varchar(200),
   observaciones varchar(200),
-  id_historia_consulta int,
-  foreign key (id_historia_consulta) references historial_consulta(id_historial_consulta)
+  id_historial_consulta int,
+  foreign key (id_historial_consulta) references historial_consulta(id_historial_consulta)
 );
 create table historial_internacion(
   id_historial_internacion serial primary key,
@@ -296,7 +296,7 @@ create table historial_internacion(
   motivo_egreso varchar(100),
   motivo_ingreso varchar(100),
   id_historial int,
-  foreign key (id_historial) references historial_medico(id_historial_medico)
+  foreign key (id_historial) references historial_medico(id_historial)
 );
 create table programacion_cita(
   id_programacion_cita serial primary key,
