@@ -150,7 +150,7 @@ CREATE TABLE cruge_authitemchild (
 
 /*tablas de base de datos*/
 
-
+/* Oso */
 CREATE TABLE especialidad(
   id_especialidad SERIAL primary key not null,
   nombre_especialidad  varchar(50) not null,
@@ -289,15 +289,7 @@ create table reconsulta(
   id_historial_consulta int,
   foreign key (id_historial_consulta) references historial_consulta(id_historial_consulta)
 );
-create table historial_internacion(
-  id_historial_internacion serial primary key,
-  fecha_admicion timestamp,
-  fehca_egreso timestamp,
-  motivo_egreso varchar(100),
-  motivo_ingreso varchar(100),
-  id_historial int,
-  foreign key (id_historial) references historial_medico(id_historial)
-);
+
 create table programacion_cita(
   id_programacion_cita serial primary key,
   fecha_de_registro timestamp,
@@ -308,11 +300,84 @@ create table programacion_cita(
   foreign key (id_medico) references medico(id_medico),
   foreign key (id_paciente) references paciente(id_paciente)
 );
+
+
+create table solicitud_orden(
+  id_orden serial primary key,
+  nombre varchar(50),
+  id_historial int,
+  foreign key (id_historial) references historial_medico(id_historial)
+)inherits (servicio);
+
+/*Fin oso*/
+
+
+/*Pika */
+
+create table internacion(
+  id_internacion serial not null primary key,
+  fecha_admision timestamp ,
+  motivo_ingreso varchar(25),
+  fecha_egreso timestamp ,
+  motivo_egreso varchar(25),/*alta solicitada, fuga */
+  id_historial int,
+  foreign key (id_historial) references historial_medico(id_historial)
+);
+
+create table evolucion_clinica(
+  id_evolucion_clinica serial not null primary key,
+  fecha_revision timestamp ,
+  estado_paciente varchar(25),
+  observaciones text ,
+  recomendaciones text ,
+  id_internacion int,
+  foreign key (id_internacion) references internacion(id_internacion)
+);
+
+create table quirofano(
+  id_quirofano serial not null primary key,
+  nombre_quirofano varchar(30),
+  descripcion_quirofano varchar(128)
+);
+
+create table cirugia(
+  id_cirugia serial not null primary key ,
+  fecha_inicio timestamp ,
+  fecha_fin timestamp ,
+  id_quirofano int,
+  id_historial int,
+  id_internacion int,
+  foreign key (id_quirofano) references quirofano(id_quirofano),
+  foreign key (id_historial) references historial_medico(id_historial),
+  foreign key (id_internacion) references internacion(id_internacion)
+);
+
+create table diagnostico_internacion(
+  id_diagnostico serial not null primary key ,
+  fecha_diagnostico timestamp ,
+  evaluacion_medica text
+);
+
+create table cie10(
+  codigo_cie10 varchar (10) primary key ,
+  titulo_cie10 varchar (256),
+  descripcion_cie10 text ,
+  codigo_padre varchar(10)
+);
+
+create table diagnostico_internacion_cie10(
+  id_diagnostico int,
+  codigo_cie10 varchar(10),
+  foreign key (id_diagnostico) references diagnostico_internacion(id_diagnostico),
+  foreign key (codigo_cie10) references cie10(codigo_cie10)
+);
+
 create table servicio(
   id_servicio int unique,
   fecha_creacion_servicio date,
   fecha_modificacion_servicio date
 );
+
 create table historial_costo(
   id_historial_costo SERIAL NOT NULL primary key ,
   fecha_inicio date not null ,
@@ -320,12 +385,7 @@ create table historial_costo(
   monto float not null,
   id_servicio int
 );
-create table solicitud_orden(
-  id_orden serial primary key,
-  nombre varchar(50),
-  id_historial int,
-  foreign key (id_historial) references historial_medico(id_historial)
-)inherits (servicio);
+
 create table tipo_sala(
   id_servicio SERIAL not null primary key,
   nombre_tipo_sala varchar(50) not null,
@@ -340,3 +400,25 @@ create table sala(
   id_servicio int,
   foreign key (id_servicio) references tipo_sala(id_servicio)
 );
+
+create table categoria_servicio(
+  id_categoria_servicio serial not null primary key,
+  titulo_categoria_servicio varchar(128),
+  descripcion_categoria_servicio text
+);
+create table detalle_servicio(
+  id_servicio SERIAL not null primary key,
+  titulo_detalle varchar(128),
+  descripcion_detalle text,
+  id_categoria_servicio int,
+  foreign key (id_categoria_servicio) references categoria_servicio(id_categoria_servicio)
+);
+
+create table examen_laboratorio(
+  id_servicio serial not null primary key ,
+  nombre_examen varchar(128),
+  descripcion_examen text
+);
+
+
+/*Fin */
