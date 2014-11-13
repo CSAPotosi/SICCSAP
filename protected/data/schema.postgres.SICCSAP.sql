@@ -44,7 +44,6 @@ CREATE TABLE cruge_session (
 ;
 
 
-
 CREATE  TABLE cruge_user (
   iduser  serial,
   regdate bigint NULL ,
