@@ -36,7 +36,7 @@ class HistorialCosto extends CActiveRecord
             array('monto','default','value'=>0),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_historial_costo, fecha_inicio, fecha_fin, monto, id_servicio', 'safe', 'on'=>'search'),
+			array('id_historial_costo, fecha_inicio, fecha_fin, monto, id_servicio, tipo_servicio', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -88,6 +88,7 @@ class HistorialCosto extends CActiveRecord
 		$criteria->compare('fecha_fin',$this->fecha_fin,true);
 		$criteria->compare('monto',$this->monto);
 		$criteria->compare('id_servicio',$this->id_servicio);
+        $criteria->compare('tipo_servicio',$this->tipo_servicio,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

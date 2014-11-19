@@ -5,6 +5,9 @@
  *
  * The followings are the available columns in table 'examen_laboratorio':
  * @property integer $id_servicio
+ * @property string $tipo_servicio
+ * @property string $fecha_creacion_servicio
+ * @property string $fecha_modificacion_servicio
  * @property string $nombre_examen
  * @property string $descripcion_examen
  */
@@ -26,11 +29,12 @@ class ExamenLaboratorio extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+			array('tipo_servicio', 'length', 'max'=>20),
 			array('nombre_examen', 'length', 'max'=>128),
-			array('descripcion_examen', 'safe'),
+			array('fecha_creacion_servicio, fecha_modificacion_servicio, descripcion_examen', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_servicio, nombre_examen, descripcion_examen', 'safe', 'on'=>'search'),
+			array('id_servicio, tipo_servicio, fecha_creacion_servicio, fecha_modificacion_servicio, nombre_examen, descripcion_examen', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -52,6 +56,9 @@ class ExamenLaboratorio extends CActiveRecord
 	{
 		return array(
 			'id_servicio' => 'Id Servicio',
+			'tipo_servicio' => 'Tipo Servicio',
+			'fecha_creacion_servicio' => 'Fecha Creacion Servicio',
+			'fecha_modificacion_servicio' => 'Fecha Modificacion Servicio',
 			'nombre_examen' => 'Nombre Examen',
 			'descripcion_examen' => 'Descripcion Examen',
 		);
@@ -76,6 +83,9 @@ class ExamenLaboratorio extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id_servicio',$this->id_servicio);
+		$criteria->compare('tipo_servicio',$this->tipo_servicio,true);
+		$criteria->compare('fecha_creacion_servicio',$this->fecha_creacion_servicio,true);
+		$criteria->compare('fecha_modificacion_servicio',$this->fecha_modificacion_servicio,true);
 		$criteria->compare('nombre_examen',$this->nombre_examen,true);
 		$criteria->compare('descripcion_examen',$this->descripcion_examen,true);
 

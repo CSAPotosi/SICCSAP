@@ -5,6 +5,8 @@
  *
  * The followings are the available columns in table 'detalle_servicio':
  * @property integer $id_servicio
+ * @property string $fecha_creacion_servicio
+ * @property string $fecha_modificacion_servicio
  * @property string $titulo_detalle
  * @property string $descripcion_detalle
  * @property integer $id_categoria_servicio
@@ -32,10 +34,12 @@ class DetalleServicio extends CActiveRecord
 		return array(
 			array('id_categoria_servicio', 'numerical', 'integerOnly'=>true),
 			array('titulo_detalle', 'length', 'max'=>128),
-			array('descripcion_detalle', 'safe'),
+			array('fecha_creacion_servicio, fecha_modificacion_servicio, descripcion_detalle', 'safe'),
+            array('fecha_creacion_servicio','default','value'=>date('d-m-Y')),
+            array('tipo_servicio','default','value'=>'servicio'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_servicio, titulo_detalle, descripcion_detalle, id_categoria_servicio', 'safe', 'on'=>'search'),
+			array('id_servicio, fecha_creacion_servicio, fecha_modificacion_servicio, titulo_detalle, descripcion_detalle, id_categoria_servicio', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,6 +62,8 @@ class DetalleServicio extends CActiveRecord
 	{
 		return array(
 			'id_servicio' => 'Id Servicio',
+			'fecha_creacion_servicio' => 'Fecha Creacion Servicio',
+			'fecha_modificacion_servicio' => 'Fecha Modificacion Servicio',
 			'titulo_detalle' => 'Titulo Detalle',
 			'descripcion_detalle' => 'Descripcion Detalle',
 			'id_categoria_servicio' => 'Id Categoria Servicio',
@@ -83,6 +89,8 @@ class DetalleServicio extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id_servicio',$this->id_servicio);
+		$criteria->compare('fecha_creacion_servicio',$this->fecha_creacion_servicio,true);
+		$criteria->compare('fecha_modificacion_servicio',$this->fecha_modificacion_servicio,true);
 		$criteria->compare('titulo_detalle',$this->titulo_detalle,true);
 		$criteria->compare('descripcion_detalle',$this->descripcion_detalle,true);
 		$criteria->compare('id_categoria_servicio',$this->id_categoria_servicio);

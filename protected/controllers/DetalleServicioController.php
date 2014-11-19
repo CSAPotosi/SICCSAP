@@ -61,20 +61,28 @@ class DetalleServicioController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new DetalleServicio;
-
+		$modelServicio=new DetalleServicio;
+        $modelCosto=new HistorialCosto;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['DetalleServicio']))
+		if(isset($_POST['DetalleServicio'],$_POST['HistorialCosto']))
 		{
-			$model->attributes=$_POST['DetalleServicio'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_servicio));
+			$modelServicio->attributes=$_POST['DetalleServicio'];
+            $modelCosto->attributes=$_POST['HistorialCosto'];
+            if($modelServicio->validate()&&$modelCosto->validate()){
+                $modelServicio->save();
+                $modelCosto->id_servicio=$modelServicio->id_servicio;
+                $modelCosto->tipo_servicio=$modelServicio->tipo_servicio;
+                $modelCosto->save();
+                $this->redirect(array('view','id'=>$modelServicio->id_servicio));
+            }
+
 		}
 
 		$this->render('create',array(
-			'model'=>$model,
+			'modelServicio'=>$modelServicio,
+            'modelCosto'=>$modelCosto,
 		));
 	}
 
@@ -85,21 +93,29 @@ class DetalleServicioController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		$model=$this->loadModel($id);
-
-		// Uncomment the following line if AJAX validation is needed
+		$modelServicio=$this->loadModelServicio($id);
+        $modelCosto=$this->loadModelCosto($id);
+        // Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['DetalleServicio']))
+		if(isset($_POST['DetalleServicio'],$_POST['HistorialCosto']))
 		{
-			$model->attributes=$_POST['DetalleServicio'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_servicio));
+			$modelServicio->attributes=$_POST['DetalleServicio'];
+            $modelServicio->fecha_modificacion_servicio=date('d-m-Y');
+            $modelCosto->attributes=$_POST['HistorialCosto'];
+			if($modelServicio->validate()&&$modelCosto->validate()){
+                $modelServicio->save();
+                $modelCosto->save();
+                $this->redirect(array('view','id'=>$modelServicio->id_servicio));
+            }
+
 		}
 
 		$this->render('update',array(
-			'model'=>$model,
+			'modelServicio'=>$modelServicio,
+            'modelCosto'=>$modelCosto,
 		));
+
 	}
 
 	/**
@@ -173,4 +189,23 @@ class DetalleServicioController extends Controller
 			Yii::app()->end();
 		}
 	}
+    public function loadModelServicio($id)
+    {
+        $model=DetalleServicio::model()->findByPk($id);
+        if($model===null)
+            throw new CHttpException(404,'The requested page does not exist.');
+        return $model;
+    }
+    public function loadModelCosto($id)
+    {
+        $criterio=new CDbCriteria;
+        $criterio->addCondition('fecha_fin is NULL');
+        $criterio->addCondition('id_servicio='.$id);
+        $criterio->compare('tipo_servicio','servicio');
+        $model=HistorialCosto::model()->find($criterio);
+
+        if($model===null)
+            throw new CHttpException(404,'The requested page does not exist.');
+        return $model;
+    }
 }

@@ -163,15 +163,17 @@ create table persona(
   apellidos varchar(100) not null,
   direccion varchar(100),
   sexo varchar(1) check (sexo in ('M','F')),
-  localidad varchar(40),
+  localidad varchar(100),/*ciudad o ...*/
+  provincia varchar(100),
   pais varchar(40),
   telefono varchar(20),
   celular varchar(20),
-  email varchar(100),
+  email varchar(128),
   fecha_de_nacimiento timestamp,
-  fotografia varchar(128) default 'default.gif',
+  fotografia varchar(256) default 'default.gif',
   estado_civil varchar(20)
 );
+
 create table medico(
   id_medico serial not null primary key ,
   matricula varchar(20),
@@ -232,12 +234,14 @@ create table empresa(
   ubicacion_empresa varchar(128),
   telefono varchar(15)
 );
+
 create table paciente(
   id_paciente serial not null primary key,
-  ocupacion_paciente varchar(50),
-  grupo_sanguineo_paciente varchar(5),
-  nombre_responsable varchar(128),
-  telefono_responsable varchar(30),
+  ocupacion varchar(50),
+  grupo_sanguineo varchar(5),
+  nombre_responsable varchar(256),
+  direccion_responsable varchar(128),
+  telefono_responsable varchar(20),
   relacion_responsable_paciente varchar(20),
   tipo_paciente varchar(20),
   estado_paciente varchar(15),
@@ -245,6 +249,9 @@ create table paciente(
   id_empresa int,
   foreign key (id_empresa) references empresa(id_empresa)
 )inherits (persona);
+
+
+
 create table historial_medico(
   id_historial serial primary key,
   id_paciente int,
@@ -252,17 +259,18 @@ create table historial_medico(
   fecha_actualizacion timestamp,
   foreign key (id_paciente) references paciente (id_paciente)
 );
+
 create table historial_consulta(
   id_historial_consulta serial primary key,
-  fecha_de_consulta timestamp,
+  fecha_consulta timestamp,
   id_historial int,
   foreign key (id_historial) references historial_medico(id_historial)
 );
 create table diagnostico_consulta(
   id_diagnostico serial primary key,
-  enfermedad varchar(15),
-  tratamiento varchar(50),
-  observaciones varchar(100),
+  enfermedad text,
+  tratamiento text,
+  observaciones text,
   ritmo_cardiaco varchar(50),
   frecuencia_respiratoria varchar(50),
   temperatura varchar(50),
@@ -272,6 +280,7 @@ create table diagnostico_consulta(
   id_historial_consulta int,
   foreign key (id_historial_consulta) references historial_consulta(id_historial_consulta)
 );
+
 create table receta(
   id_receta serial primary key,
   nombre varchar(100),
@@ -372,7 +381,8 @@ create table diagnostico_internacion_cie10(
 );
 
 create table servicio(
-  id_servicio int unique,
+  id_servicio int,
+  tipo_servicio varchar(20),
   fecha_creacion_servicio date,
   fecha_modificacion_servicio date
 );
@@ -382,11 +392,12 @@ create table historial_costo(
   fecha_inicio date not null ,
   fecha_fin date,
   monto float not null,
-  id_servicio int
+  id_servicio int,
+  tipo_servicio varchar(20)
 );
 
 create table tipo_sala(
-  id_servicio SERIAL not null primary key,
+  id_servicio serial primary key,
   nombre_tipo_sala varchar(50) not null,
   descripcion_tipo_sala varchar(128)
 )inherits (servicio);
@@ -405,19 +416,20 @@ create table categoria_servicio(
   titulo_categoria_servicio varchar(128),
   descripcion_categoria_servicio text
 );
+
 create table detalle_servicio(
-  id_servicio SERIAL not null primary key,
+  id_servicio serial primary key,
   titulo_detalle varchar(128),
   descripcion_detalle text,
   id_categoria_servicio int,
   foreign key (id_categoria_servicio) references categoria_servicio(id_categoria_servicio)
-);
+)inherits (servicio);
 
 create table examen_laboratorio(
-  id_servicio serial not null primary key ,
+  id_servicio serial primary key ,
   nombre_examen varchar(128),
   descripcion_examen text
-);
+)inherits (servicio);
 
 
 /*Fin */

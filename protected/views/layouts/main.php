@@ -101,7 +101,6 @@
                                 <a href="">Buscar Medico</a>
                             </div>
                         </div>
-
                     </div>
                     <div class="panel panel-primary">
 
@@ -139,6 +138,57 @@
                             </div>
                             <div class="panel-body">
                                 <a href="http://localhost/SICCSAPSRL/index.php?r=registro">Registrar asistencia</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#accordionItem">
+                                    Sala
+                                </a>
+                            </h4>
+                        </div>
+
+                        <div id="accordionItem" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <?php echo CHtml::link('Listar por tipos de salas',Yii::app()->createUrl('tipoSala')) ?>
+                            </div>
+                            <div class="panel-body">
+                                <?php echo CHtml::link('Nuevo tipo de sala',Yii::app()->createUrl('tipoSala/create')) ?>
+                            </div>
+                            <div class="panel-body">
+                                <?php echo CHtml::link('Listar salas',Yii::app()->createUrl('Sala')) ?>
+                            </div>
+                            <div class="panel-body">
+                                <?php echo CHtml::link('Nueva sala',Yii::app()->createUrl('Sala/create')) ?>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#accordionServicio">
+                                    Servicios
+                                </a>
+                            </h4>
+                        </div>
+
+                        <div id="accordionServicio" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <?php echo CHtml::link('Listar categorias',Yii::app()->createUrl('categoriaServicio')) ?>
+                            </div>
+                            <div class="panel-body">
+                                <?php echo CHtml::link('Nueva Categoria',Yii::app()->createUrl('categoriaServicio/create')) ?>
+                            </div>
+                            <div class="panel-body">
+                                <?php echo CHtml::link('Listar Servicios',Yii::app()->createUrl('detalleServicio')) ?>
+                            </div>
+                            <div class="panel-body">
+                                <?php echo CHtml::link('Nueva servicio',Yii::app()->createUrl('detalleServicio/create')) ?>
                             </div>
                         </div>
 

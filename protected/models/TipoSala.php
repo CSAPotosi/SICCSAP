@@ -33,12 +33,14 @@ class TipoSala extends CActiveRecord
 		return array(
 			array('nombre_tipo_sala', 'required'),
 			array('nombre_tipo_sala', 'length', 'max'=>50),
+            array('tipo_servicio', 'length', 'max'=>20),
+            array('tipo_servicio', 'default', 'value'=>'sala'),
 			array('descripcion_tipo_sala', 'length', 'max'=>128),
 			array('fecha_creacion_servicio, fecha_modificacion_servicio', 'safe'),
             array('fecha_creacion_servicio','default','value'=>date('d-m-Y')),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_servicio, fecha_creacion_servicio, fecha_modificacion_servicio, nombre_tipo_sala, descripcion_tipo_sala', 'safe', 'on'=>'search'),
+			array('id_servicio,tipo_servicio, fecha_creacion_servicio, fecha_modificacion_servicio, nombre_tipo_sala, descripcion_tipo_sala', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,8 +65,8 @@ class TipoSala extends CActiveRecord
 			'id_servicio' => 'Id Servicio',
 			'fecha_creacion_servicio' => 'Fecha Creacion Servicio',
 			'fecha_modificacion_servicio' => 'Fecha Modificacion Servicio',
-			'nombre_tipo_sala' => 'Nombre Tipo Sala',
-			'descripcion_tipo_sala' => 'Descripcion Tipo Sala',
+			'nombre_tipo_sala' => 'Tipo Sala',
+			'descripcion_tipo_sala' => 'Descripcion',
 		);
 	}
 

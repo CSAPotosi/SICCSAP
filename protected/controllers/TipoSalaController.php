@@ -74,6 +74,7 @@ class TipoSalaController extends Controller
 			if($modelTipoSala->validate()&&$modelCosto->validate()){
                 $modelTipoSala->save();
                 $modelCosto->id_servicio=$modelTipoSala->id_servicio;
+                $modelCosto->tipo_servicio=$modelTipoSala->tipo_servicio;
                 $modelCosto->save();
                 $this->redirect(array('view','id'=>$modelTipoSala->id_servicio));
             }
@@ -176,6 +177,7 @@ class TipoSalaController extends Controller
         $criterio=new CDbCriteria;
         $criterio->addCondition('fecha_fin is NULL');
         $criterio->addCondition('id_servicio='.$id);
+        $criterio->compare('tipo_servicio','sala');
         $model=HistorialCosto::model()->find($criterio);
 
         if($model===null)
