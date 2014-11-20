@@ -1,12 +1,7 @@
-<?php
-/* @var $this EmpleadoController */
-/* @var $data Empleado */
-?>
-
 <div class="view">
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_empleado')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id_empleado), array('view', 'id'=>$data->id_empleado)); ?>
+	<?php echo CHtml::link(CHtml::encode($data->id_empleado),array('view','id'=>$data->id_empleado)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_persona')); ?>:</b>
@@ -66,12 +61,12 @@
 	<?php echo CHtml::encode($data->fotografia); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('estado')); ?>:</b>
-	<?php echo CHtml::encode($data->estado); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('estado_civil')); ?>:</b>
 	<?php echo CHtml::encode($data->estado_civil); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('id_horario')); ?>:</b>
+	<?php echo CHtml::encode($data->id_horario); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('fecha_de_contratacion')); ?>:</b>
@@ -84,6 +79,14 @@
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_departamento')); ?>:</b>
 	<?php echo CHtml::encode($data->id_departamento); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('estado')); ?>:</b>
+	<?php echo CHtml::encode($data->estado); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('motivo_cambio_estado')); ?>:</b>
+	<?php echo CHtml::encode($data->motivo_cambio_estado); ?>
 	<br />
 
 	*/ ?>

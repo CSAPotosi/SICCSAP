@@ -6,16 +6,13 @@
  * The followings are the available columns in table 'registro':
  * @property integer $id_registro
  * @property integer $id_empleado
- * @property integer $id_horario
- * @property integer $id_departamento
  * @property string $fecha_de_registro
  * @property string $hora_ingreso
  * @property string $hora_salida
  * @property string $excepcion
  *
  * The followings are the available model relations:
- * @property Departamento $idEmpleado
- * @property Horario $idHorario
+ * @property Empleado $idEmpleado
  */
 class Registro extends CActiveRecord
 {
@@ -35,12 +32,12 @@ class Registro extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_empleado, id_horario, id_departamento', 'numerical', 'integerOnly'=>true),
+			array('id_empleado', 'numerical', 'integerOnly'=>true),
 			array('excepcion', 'length', 'max'=>20),
 			array('fecha_de_registro, hora_ingreso, hora_salida', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_registro, id_empleado, id_horario, id_departamento, fecha_de_registro, hora_ingreso, hora_salida, excepcion', 'safe', 'on'=>'search'),
+			array('id_registro, id_empleado, fecha_de_registro, hora_ingreso, hora_salida, excepcion', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -52,8 +49,7 @@ class Registro extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idEmpleado' => array(self::BELONGS_TO, 'Departamento', 'id_empleado'),
-			'idHorario' => array(self::BELONGS_TO, 'Horario', 'id_horario'),
+			'idEmpleado' => array(self::BELONGS_TO, 'Empleado', 'id_empleado'),
 		);
 	}
 
@@ -65,8 +61,6 @@ class Registro extends CActiveRecord
 		return array(
 			'id_registro' => 'Id Registro',
 			'id_empleado' => 'Id Empleado',
-			'id_horario' => 'Id Horario',
-			'id_departamento' => 'Id Departamento',
 			'fecha_de_registro' => 'Fecha De Registro',
 			'hora_ingreso' => 'Hora Ingreso',
 			'hora_salida' => 'Hora Salida',
@@ -94,8 +88,6 @@ class Registro extends CActiveRecord
 
 		$criteria->compare('id_registro',$this->id_registro);
 		$criteria->compare('id_empleado',$this->id_empleado);
-		$criteria->compare('id_horario',$this->id_horario);
-		$criteria->compare('id_departamento',$this->id_departamento);
 		$criteria->compare('fecha_de_registro',$this->fecha_de_registro,true);
 		$criteria->compare('hora_ingreso',$this->hora_ingreso,true);
 		$criteria->compare('hora_salida',$this->hora_salida,true);

@@ -6,8 +6,8 @@
  * The followings are the available columns in table 'turno':
  * @property integer $id_turno
  * @property string $nombre
- * @property string $horario_entrada
- * @property string $horario_salida
+ * @property string $hora_ingreso
+ * @property string $hora_salida
  * @property integer $id_horario
  *
  * The followings are the available model relations:
@@ -33,10 +33,10 @@ class Turno extends CActiveRecord
 		return array(
 			array('id_horario', 'numerical', 'integerOnly'=>true),
 			array('nombre', 'length', 'max'=>50),
-			array('horario_entrada, horario_salida', 'safe'),
+			array('hora_ingreso, hora_salida', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_turno, nombre, horario_entrada, horario_salida, id_horario', 'safe', 'on'=>'search'),
+			array('id_turno, nombre, hora_ingreso, hora_salida, id_horario', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,8 +60,8 @@ class Turno extends CActiveRecord
 		return array(
 			'id_turno' => 'Id Turno',
 			'nombre' => 'Nombre',
-			'horario_entrada' => 'Horario Entrada',
-			'horario_salida' => 'Horario Salida',
+			'hora_ingreso' => 'Hora Ingreso',
+			'hora_salida' => 'Hora Salida',
 			'id_horario' => 'Id Horario',
 		);
 	}
@@ -86,8 +86,8 @@ class Turno extends CActiveRecord
 
 		$criteria->compare('id_turno',$this->id_turno);
 		$criteria->compare('nombre',$this->nombre,true);
-		$criteria->compare('horario_entrada',$this->horario_entrada,true);
-		$criteria->compare('horario_salida',$this->horario_salida,true);
+		$criteria->compare('hora_ingreso',$this->hora_ingreso,true);
+		$criteria->compare('hora_salida',$this->hora_salida,true);
 		$criteria->compare('id_horario',$this->id_horario);
 
 		return new CActiveDataProvider($this, array(

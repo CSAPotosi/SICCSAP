@@ -6,9 +6,9 @@
  * The followings are the available columns in table 'horario':
  * @property integer $id_horario
  * @property string $nombre
+ * @property string $descripcion
  *
  * The followings are the available model relations:
- * @property Registro[] $registros
  * @property Empleado[] $empleados
  * @property Turno[] $turnos
  */
@@ -31,9 +31,10 @@ class Horario extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('nombre', 'length', 'max'=>50),
+			array('descripcion', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_horario, nombre', 'safe', 'on'=>'search'),
+			array('id_horario, nombre, descripcion', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -45,7 +46,6 @@ class Horario extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'registros' => array(self::HAS_MANY, 'Registro', 'id_horario'),
 			'empleados' => array(self::HAS_MANY, 'Empleado', 'id_horario'),
 			'turnos' => array(self::HAS_MANY, 'Turno', 'id_horario'),
 		);
@@ -59,6 +59,7 @@ class Horario extends CActiveRecord
 		return array(
 			'id_horario' => 'Id Horario',
 			'nombre' => 'Nombre',
+			'descripcion' => 'Descripcion',
 		);
 	}
 
@@ -82,6 +83,7 @@ class Horario extends CActiveRecord
 
 		$criteria->compare('id_horario',$this->id_horario);
 		$criteria->compare('nombre',$this->nombre,true);
+		$criteria->compare('descripcion',$this->descripcion,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

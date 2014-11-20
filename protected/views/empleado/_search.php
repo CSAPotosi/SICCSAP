@@ -1,120 +1,58 @@
-<?php
-/* @var $this EmpleadoController */
-/* @var $model Empleado */
-/* @var $form CActiveForm */
-?>
-
-<div class="wide form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'action'=>Yii::app()->createUrl($this->route),
 	'method'=>'get',
 )); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_persona'); ?>
-		<?php echo $form->textField($model,'id_persona'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_persona',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'dni'); ?>
-		<?php echo $form->textField($model,'dni',array('size'=>20,'maxlength'=>20)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'dni',array('class'=>'span5','maxlength'=>20)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'nit'); ?>
-		<?php echo $form->textField($model,'nit',array('size'=>20,'maxlength'=>20)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'nit',array('class'=>'span5','maxlength'=>20)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'nombres'); ?>
-		<?php echo $form->textField($model,'nombres',array('size'=>60,'maxlength'=>100)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'nombres',array('class'=>'span5','maxlength'=>100)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'apellidos'); ?>
-		<?php echo $form->textField($model,'apellidos',array('size'=>60,'maxlength'=>100)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'apellidos',array('class'=>'span5','maxlength'=>100)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'direccion'); ?>
-		<?php echo $form->textField($model,'direccion',array('size'=>60,'maxlength'=>100)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'direccion',array('class'=>'span5','maxlength'=>100)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'sexo'); ?>
-		<?php echo $form->textField($model,'sexo',array('size'=>1,'maxlength'=>1)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'sexo',array('class'=>'span5','maxlength'=>1)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'localidad'); ?>
-		<?php echo $form->textField($model,'localidad',array('size'=>40,'maxlength'=>40)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'localidad',array('class'=>'span5','maxlength'=>40)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'pais'); ?>
-		<?php echo $form->textField($model,'pais',array('size'=>40,'maxlength'=>40)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'pais',array('class'=>'span5','maxlength'=>40)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'telefono'); ?>
-		<?php echo $form->textField($model,'telefono',array('size'=>20,'maxlength'=>20)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'telefono',array('class'=>'span5','maxlength'=>20)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'celular'); ?>
-		<?php echo $form->textField($model,'celular',array('size'=>20,'maxlength'=>20)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'celular',array('class'=>'span5','maxlength'=>20)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'email'); ?>
-		<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>100)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'email',array('class'=>'span5','maxlength'=>100)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'fecha_de_nacimiento'); ?>
-		<?php echo $form->textField($model,'fecha_de_nacimiento'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'fecha_de_nacimiento',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'fotografia'); ?>
-		<?php echo $form->textField($model,'fotografia',array('size'=>60,'maxlength'=>128)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'fotografia',array('class'=>'span5','maxlength'=>128)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'estado'); ?>
-		<?php echo $form->textField($model,'estado',array('size'=>1,'maxlength'=>1)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'estado_civil',array('class'=>'span5','maxlength'=>20)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'estado_civil'); ?>
-		<?php echo $form->textField($model,'estado_civil',array('size'=>20,'maxlength'=>20)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_empleado',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_empleado'); ?>
-		<?php echo $form->textField($model,'id_empleado'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_horario',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'fecha_de_contratacion'); ?>
-		<?php echo $form->textField($model,'fecha_de_contratacion'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'fecha_de_contratacion',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'cargo'); ?>
-		<?php echo $form->textField($model,'cargo',array('size'=>50,'maxlength'=>50)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'cargo',array('class'=>'span5','maxlength'=>50)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_departamento'); ?>
-		<?php echo $form->textField($model,'id_departamento'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_departamento',array('class'=>'span5')); ?>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Search'); ?>
+	<?php echo $form->textFieldRow($model,'estado',array('class'=>'span5','maxlength'=>15)); ?>
+
+	<?php echo $form->textFieldRow($model,'motivo_cambio_estado',array('class'=>'span5','maxlength'=>128)); ?>
+
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'buttonType'=>'submit',
+			'type'=>'primary',
+			'label'=>'Search',
+		)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- search-form -->

@@ -1,60 +1,26 @@
-<?php
-/* @var $this RegistroController */
-/* @var $model Registro */
-/* @var $form CActiveForm */
-?>
-
-<div class="wide form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'action'=>Yii::app()->createUrl($this->route),
 	'method'=>'get',
 )); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_registro'); ?>
-		<?php echo $form->textField($model,'id_registro'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_registro',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_empleado'); ?>
-		<?php echo $form->textField($model,'id_empleado'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_empleado',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_horario'); ?>
-		<?php echo $form->textField($model,'id_horario'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'fecha_de_registro',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_departamento'); ?>
-		<?php echo $form->textField($model,'id_departamento'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'hora_ingreso',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'fecha_de_registro'); ?>
-		<?php echo $form->textField($model,'fecha_de_registro'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'hora_salida',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'hora_ingreso'); ?>
-		<?php echo $form->textField($model,'hora_ingreso'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'excepcion',array('class'=>'span5','maxlength'=>20)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'hora_salida'); ?>
-		<?php echo $form->textField($model,'hora_salida'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'excepcion'); ?>
-		<?php echo $form->textField($model,'excepcion',array('size'=>20,'maxlength'=>20)); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Search'); ?>
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'buttonType'=>'submit',
+			'type'=>'primary',
+			'label'=>'Search',
+		)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- search-form -->

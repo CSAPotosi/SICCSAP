@@ -1,15 +1,12 @@
 <?php
-/* @var $this EmpleadoController */
-/* @var $model Empleado */
-
 $this->breadcrumbs=array(
 	'Empleados'=>array('index'),
 	'Manage',
 );
 
 $this->menu=array(
-	array('label'=>'List Empleado', 'url'=>array('index')),
-	array('label'=>'Create Empleado', 'url'=>array('create')),
+	array('label'=>'List Empleado','url'=>array('index')),
+	array('label'=>'Create Empleado','url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -18,7 +15,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#empleado-grid').yiiGridView('update', {
+	$.fn.yiiGridView.update('empleado-grid', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -33,14 +30,14 @@ You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&g
 or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
 </p>
 
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
+<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button btn')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
 )); ?>
 </div><!-- search-form -->
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
+<?php $this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'empleado-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
@@ -59,17 +56,23 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'email',
 		'fecha_de_nacimiento',
 		'fotografia',
-		'estado',
 		'estado_civil',
 		'id_empleado',
+            array(
+                'name'=>'id_horario',
+                'value'=>'$data->horario->nombre',
+            ),
 		'fecha_de_contratacion',
 		'cargo',
-        array(
-            'name'=>'id_departamento',
-            'value'=>'$data->departamento->nombre',
-        ),
+            array(
+                'name'=>'id_departamento',
+                'value'=>'$data->departamento->nombre',
+            ),
+		'estado',
+		'motivo_cambio_estado',
+		*/
 		array(
-			'class'=>'CButtonColumn',
+			'class'=>'bootstrap.widgets.TbButtonColumn',
 		),
 	),
 )); ?>
